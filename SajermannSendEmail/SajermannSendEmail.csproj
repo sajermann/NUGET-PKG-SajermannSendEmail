@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Bruno Sajermann</Authors>
+    <Company>Sajermann Developer</Company>
+    <Version>1.0.7</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Mytemplate.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Mytemplate.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+  </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FluentEmail.Core" Version="3.0.0" />
+		<PackageReference Include="FluentEmail.Smtp" Version="3.0.0" />
+		<PackageReference Include="Handlebars.Net" Version="2.0.9" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+	</ItemGroup>
+	
+
+	<ItemGroup Label="FilesToCopy">
+		<Content Include="LogFiles\*.html" Pack="true" PackagePath="contentFiles\LogFiles">
+			<PackageCopyToOutput>true</PackageCopyToOutput>
+		</Content>
+	</ItemGroup>
+
+</Project>
