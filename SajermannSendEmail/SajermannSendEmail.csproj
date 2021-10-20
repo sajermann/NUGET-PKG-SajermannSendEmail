@@ -5,17 +5,27 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Bruno Sajermann</Authors>
     <Company>Sajermann Developer</Company>
-    <Version>1.0.7</Version>
+    <Version>1.0.11</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Mytemplate.html" />
+    <None Remove="TemplateBifrost.html" />
+    <None Remove="TemplateSajermannSendEmail\Template1.html" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Mytemplate.html">
+    <Content Include="TemplateSajermannSendEmail\Template2.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+    <Content Include="TemplateSajermannSendEmail\Tamplate3.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+    <Content Include="TemplateSajermannSendEmail\Template1.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
   </ItemGroup>
 
