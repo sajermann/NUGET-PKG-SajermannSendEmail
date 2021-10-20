@@ -15,7 +15,6 @@ namespace SajermannSendEmail
 {
   public static class EmailService
   {
-   // public static async Task Send(List<AddressSajermann> emailsTo, object message, List<AddressSajermann> emailsCc = null, List<AddressSajermann> emailsBcc = null)
     public static async Task Send(ModelSajermannSendEmail model)
     {
 
@@ -29,53 +28,20 @@ namespace SajermannSendEmail
 
 
       #region ConfigFluentEmail
-      var sender = new SmtpSender(() => new SmtpClient(configuration.GetSection("EmailConfigs")["Host"])
+      var sender = new SmtpSender(() => new SmtpClient(configuration.GetSection("SajermannSendEmailConfigs")["Host"])
       {
-        UseDefaultCredentials = Convert.ToBoolean(configuration.GetSection("EmailConfigs")["UseDefaultCredentials"]),
-        EnableSsl = Convert.ToBoolean(configuration.GetSection("EmailConfigs")["EnableSsl"]),
+        UseDefaultCredentials = Convert.ToBoolean(configuration.GetSection("SajermannSendEmailConfigs")["UseDefaultCredentials"]),
+        EnableSsl = Convert.ToBoolean(configuration.GetSection("SajermannSendEmailConfigs")["EnableSsl"]),
         DeliveryMethod = SmtpDeliveryMethod.Network,
-        Port = int.Parse(configuration.GetSection("EmailConfigs")["Port"]),
-        Credentials = new NetworkCredential(configuration.GetSection("EmailConfigs")["Username"], configuration.GetSection("EmailConfigs")["Password"])
+        Port = int.Parse(configuration.GetSection("SajermannSendEmailConfigs")["Port"]),
+        Credentials = new NetworkCredential(configuration.GetSection("SajermannSendEmailConfigs")["Username"], configuration.GetSection("SajermannSendEmailConfigs")["Password"])
       });
       Email.DefaultSender = sender;
       #endregion
 
-
-      //var listEmailsTo = new List<Address>();
-      //foreach(var item in emailsTo)
-      //{
-      //  var newItem = new Address(item.EmailAddress, item.Name);
-      //  listEmailsTo.Add(newItem);
-      //}
-
-      //var listEmailsCc = new List<Address>();
-      //if(emailsCc != null)
-      //{
-      //  foreach (var item in emailsCc)
-      //  {
-      //    var newItem = new Address(item.EmailAddress, item.Name);
-      //    listEmailsCc.Add(newItem);
-      //  }
-      //}
-
-      //var listEmailsBcc = new List<Address>();
-      //if(emailsBcc != null)
-      //{
-      //  foreach (var item in emailsBcc)
-      //  {
-      //    var newItem = new Address(item.EmailAddress, item.Name);
-      //    listEmailsBcc.Add(newItem);
-      //  }
-      //}
-
- 
-
-      var batata = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-      
       try
       {
-        string emailMounted = BuildHtml($"{Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}/{model.TemplateName}.html", model.MessageForHandlerbars);
-
+        string emailMounted = BuildHtml($"{Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}/TemplateSajermannSendEmail/{model.TemplateName}.html", model.MessageForHandlerbars);
         var email = Email
             .From(model.EmailFrom.EmailAddress, model.EmailFrom.Name)
             .To(model.EmailsTo.ToAddressFluent())
@@ -86,12 +52,10 @@ namespace SajermannSendEmail
             .UsingTemplate(emailMounted, model.MessageForHandlerbars);
 
         var t = await email.SendAsync();
-
-
       }
       catch (Exception e)
       {
-        var ttttt = e.Message;
+        var erro = e.Message;
       }
     }
 

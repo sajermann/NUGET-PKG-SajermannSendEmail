@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Bruno Sajermann</Authors>
     <Company>Sajermann Developer</Company>
-    <Version>1.0.11</Version>
+    <Version>1.0.16</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,7 +19,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
-    <Content Include="TemplateSajermannSendEmail\Tamplate3.html">
+    <Content Include="TemplateSajermannSendEmail\Template3.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<PackageCopyToOutput>true</PackageCopyToOutput>
     </Content>
@@ -34,13 +34,6 @@
 		<PackageReference Include="FluentEmail.Smtp" Version="3.0.0" />
 		<PackageReference Include="Handlebars.Net" Version="2.0.9" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
-	</ItemGroup>
-	
-
-	<ItemGroup Label="FilesToCopy">
-		<Content Include="LogFiles\*.html" Pack="true" PackagePath="contentFiles\LogFiles">
-			<PackageCopyToOutput>true</PackageCopyToOutput>
-		</Content>
 	</ItemGroup>
 
 </Project>
